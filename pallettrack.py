@@ -31,7 +31,7 @@ def get_order(tracking_number):
         history = tables[0]
         columns = [th.text_content() for th in history.cssselect('thead th')]
         histrows = []
-        for row in history.cssselect(':not(thead) > tr'):
+        for row in history.cssselect('table > tr'):
             cells = [td.text_content().rstrip() for td in row.cssselect('td')]
             histrows.append(dict(zip(columns, cells)))
 
@@ -44,3 +44,5 @@ def get_order(tracking_number):
     return order
 
 
+if __name__ == '__main__':
+    pprint(get_order('184256-793'))
